@@ -1,10 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():  # put application's code here
+    return render_template('index.html')
+
+@app.route('/', methods=['POST'])
+def post():
+    data = request.data
     return render_template('index.html')
 
 if __name__ == '__main__':
