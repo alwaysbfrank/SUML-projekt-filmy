@@ -8,7 +8,7 @@ def hello_world():  # put application's code here
 
 @app.route('/', methods=['POST'])
 def post():
-    data = request.data
+    data = request.form
     return render_template('index.html')
 
 if __name__ == '__main__':
