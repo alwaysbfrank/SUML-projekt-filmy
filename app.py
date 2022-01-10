@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from pypmml import Model
 
 app = Flask(__name__)
 
@@ -24,6 +25,10 @@ def post():
     runtime = data['runtime']
     production = data['production']
     rating = data['rating']
+    model = Model.fromFile('prediction-imdb_rating.pmml')
+    result = model.predict({
+        "budget" : budget
+    })
     return render_template('index.html')
 
 if __name__ == '__main__':
