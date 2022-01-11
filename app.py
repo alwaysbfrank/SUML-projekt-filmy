@@ -15,7 +15,7 @@ countries = ['Argentina', 'Australia', 'Austria', 'Bahamas', 'Belgium', 'Botswan
 
 @app.route('/', methods=['GET'])
 def hello_world():  # put application's code here
-    return render_template('index.html', genres=genres, countries=countries, prediction={'prediction':1.1})
+    return render_template('index.html', genres=genres, countries=countries, prediction={'prediction':1.0})
 
 
 @app.route('/', methods=['POST'])
@@ -24,7 +24,7 @@ def post():
     modelRequest = prepareRequest(data)
     audienceRatingModel = Model.fromFile('predict-audience_rating.pmml')
     audienceRatingPrediction = audienceRatingModel.predict(modelRequest)
-    return render_template('index.html', prediction={'prediction':audienceRatingPrediction['prediction']})
+    return render_template('index.html', genres=genres, countries=countries, prediction={'prediction':audienceRatingPrediction['prediction']})
 
 
 def prepareRequest(data):
